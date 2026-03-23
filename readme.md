@@ -6,8 +6,8 @@ graph TD
     classDef pipe stroke:#7f8c8d,stroke-width:4px;
     classDef important fill:#e74c3c,stroke:#c0392b,color:white,font-weight:bold;
 
-    subgraph Tanque_y_Bomba [Tanque y Bomba]
-        Tanque["Tanque de Agua\n(Nivel Alto)"]:::tank
+    subgraph Tanque_Bomba
+        Tanque["Tanque de Agua\nNivel Alto"]:::tank
         Bomba["Bomba\nCentrífuga"]:::tank
         Succion["Tubería de\nSucción"]:::pipe
         
@@ -15,27 +15,27 @@ graph TD
         Succion --> Bomba
     end
 
-    subgraph Sistema_Apagado [ESTADO: BOMBA APAGADA (Sin Solución)]
+    subgraph Sin_Solucion
         Descarga_A["Tubería de Descarga"]:::pipe
-        Salida_A["Salida de Riego\n(Nivel Bajo)"]
+        Salida_A["Salida de Riego\nNivel Bajo"]
         
         Bomba -.->|Paso Libre| Descarga_A
-        Descarga_A -->|Flujo Continuo\npor Gravedad| Salida_A:::important
+        Descarga_A -->|Flujo continuo por gravedad| Salida_A:::important
     end
 
-    subgraph Sistema_Con_Solucion [ESTADO: BOMBA APAGADA (Con Rompe-Sifón)]
-        Tuberia_Elevada["Tubería Elevada\n(Sobre Nivel Máx. Tanque)"]:::pipe
-        Valvula_Vacio["Válvula Rompe-Sifón\n(Punto más alto)"]:::important
-        Descarga_B["Tubería de Descarga"]:::pipe
-        Salida_B["Salida de Riego"]
-        Aire["Entrada de Aire"]:::air
+    subgraph Con_Rompe_Sifon
+        Tuberia_Elevada["Tubería elevada\nSobre nivel tanque"]:::pipe
+        Valvula_Vacio["Válvula rompe sifón\nPunto alto"]:::important
+        Descarga_B["Tubería de descarga"]:::pipe
+        Salida_B["Salida de riego"]
+        Aire["Entrada de aire"]:::air
         
         Bomba --> Tuberia_Elevada
         Tuberia_Elevada --- Valvula_Vacio
-        Valvula_Vacio -->|Corta Sifón| Descarga_B
+        Valvula_Vacio -->|Corta sifón| Descarga_B
         Descarga_B --> Salida_B
         
-        Aire -.->|Entra Aire| Valvula_Vacio
+        Aire -.->|Entra aire| Valvula_Vacio
     end
 
     Bomba -.-> Descarga_A
